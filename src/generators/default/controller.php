@@ -100,7 +100,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         if($request->isAjax){
             Yii::$app->response->format = Response::FORMAT_JSON;
             return [
-                    'title'=> "<?= $modelClass ?> #".<?= $actionParams ?>,
+                    'title'=> Yii::t('app','<?= $modelClass ?>'). " #".<?= $actionParams ?>,
                     'content'=>$this->renderAjax('view', [
                         'model' => $this->findModel(<?= $actionParams ?>),
                     ]),
@@ -132,7 +132,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> Yii::t('app', 'Create new {modelClass}', ['modelClass' => '<?= $modelClass ?>'] ),
+                    'title'=> Yii::t('app', 'Create new {modelClass}', ['modelClass' => Yii::t('app','<?= $modelClass ?>')] ),
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -143,15 +143,15 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> Yii::t('app', 'Create new {modelClass}', ['modelClass' => '<?= $modelClass ?>'] ),
-                    'content'=>'<span class="text-success">Create <?= $modelClass ?> success</span>',
+                    'title'=> Yii::t('app', 'Create new {modelClass}', ['modelClass' => Yii::t('app','<?= $modelClass ?>')] ),
+                    'content'=>'<span class="text-success">'.Yii::t('app', 'Create {modelClass} success', ['modelClass' => Yii::t('app','<?= $modelClass ?>')]),
                     'footer'=> Html::button(Yii::t('app','Close'),['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
                             Html::a(Yii::t('app','Create More'),['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
 
                 ];
             }else{
                 return [
-                    'title'=> Yii::t('app', 'Create new {modelClass}', ['modelClass' => '<?= $modelClass ?>'] ),
+                    'title'=> Yii::t('app', 'Create new {modelClass}', ['modelClass' => Yii::t('app','<?= $modelClass ?>')] ),
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -194,7 +194,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> Yii::t('app', 'Update {modelClass}', ['modelClass' => '<?= $modelClass ?>'] ),
+                    'title'=> Yii::t('app', 'Update {modelClass}', ['modelClass' => Yii::t('app','<?= $modelClass ?>')] ),
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -213,7 +213,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                 ];
             }else{
                  return [
-                    'title'=> Yii::t('app', 'Update {modelClass}', ['modelClass' => '<?= $modelClass ?>'] ),
+                    'title'=> Yii::t('app', 'Update {modelClass}', ['modelClass' => Yii::t('app','<?= $modelClass ?>')] ),
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
