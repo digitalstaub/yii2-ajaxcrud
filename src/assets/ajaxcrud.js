@@ -1,5 +1,5 @@
 /*!
- * Ajax Crud 
+ * Ajax Crud
  * =================================
  * Use for johnitvn/yii2-ajaxcrud extension
  * @author John Martin john.itvn@gmail.com
@@ -38,8 +38,8 @@ $(document).ready(function () {
         if (selectedIds.length == 0) {
             // If no selected ID's show warning
             modal.show();
-            modal.setTitle('No selection');
-            modal.setContent('You must select item(s) to use this action');
+            modal.setTitle($('.btn-bulk-delete').attr('data-noselection-title'));
+            modal.setContent($('.btn-bulk-delete').attr('data-noselection-message'));
             modal.addFooterButton("Close", 'btn btn-default', function (button, event) {
                 this.hide();
             });

@@ -42,7 +42,7 @@ CrudAsset::register($this);
             'toolbar'=> [
                 ['content'=>
                     Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
-                    ['role'=>'modal-remote','title'=> 'Create new <?= Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>','class'=>'btn btn-default']).
+                    ['role'=>'modal-remote','title'=> Yii::t('app', 'Create {modelClass}', ['modelClass' => Yii::t('app', '<?= Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>')]),'class'=>'btn btn-default']).
                     Html::a('<i class="glyphicon glyphicon-repeat"></i>', [''],
                     ['data-pjax'=>1, 'class'=>'btn btn-default', 'title'=> Yii::t('app','Reset Grid')]).
                     '{toggleData}'.
@@ -54,17 +54,22 @@ CrudAsset::register($this);
             'responsive' => true,
             'panel' => [
                 'type' => 'primary',
-                'heading' => '<i class="glyphicon glyphicon-list"></i>&nbsp; '.Yii::t('app', '<?= Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?> listing'),
+                'heading' => '<i class="glyphicon glyphicon-list"></i>&nbsp; '.Yii::t('app', '{modelClass} listing', ['modelClass' => Yii::t('app','<?= Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>')]),
                 'after'=>BulkButtonWidget::widget([
                             'buttons'=>Html::a('<i class="glyphicon glyphicon-trash"></i>&nbsp; '.Yii::t('app', 'Delete All'),
                                 ["bulk-delete"] ,
                                 [
-                                    "class"=>"btn btn-danger btn-xs",
+                                    "class"=>"btn btn-danger btn-xs btn-bulk-delete",
                                     'role'=>'modal-remote-bulk',
                                     'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
                                     'data-request-method'=>'post',
                                     'data-confirm-title'=> Yii::t('app','Are you sure?'),
-                                    'data-confirm-message'=> Yii::t('app','Are you sure want to delete this item')
+                                    'data-confirm-message'=> Yii::t('app','Are you sure want to delete this item'),
+                                    'data-noselection-title'=> Yii::t('app','No selection'),
+                                    'data-noselection-message'=> Yii::t('app','You must select item(s) to use this action'),
+                                    'data-noselection-button'=> Yii::t('app','Close'),
+
+
                                 ]),
                         ]).
                         '<div class="clearfix"></div>',
