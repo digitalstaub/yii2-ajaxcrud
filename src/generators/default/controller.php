@@ -143,7 +143,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "Create new <?= $modelClass ?>",
+                    'title'=> Yii::t('app', 'Create new {modelClass}', ['modelClass' => '<?= $modelClass ?>'] ),
                     'content'=>'<span class="text-success">Create <?= $modelClass ?> success</span>',
                     'footer'=> Html::button(Yii::t('app','Close'),['class'=>'btn btn-default pull-left','data-dismiss'=>"modal"]).
                             Html::a(Yii::t('app','Create More'),['create'],['class'=>'btn btn-primary','role'=>'modal-remote'])
@@ -151,7 +151,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                 ];
             }else{
                 return [
-                    'title'=> "Create new <?= $modelClass ?>",
+                    'title'=> Yii::t('app', 'Create new {modelClass}', ['modelClass' => '<?= $modelClass ?>'] ),
                     'content'=>$this->renderAjax('create', [
                         'model' => $model,
                     ]),
@@ -194,7 +194,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             Yii::$app->response->format = Response::FORMAT_JSON;
             if($request->isGet){
                 return [
-                    'title'=> "Update <?= $modelClass ?> #".<?= $actionParams ?>,
+                    'title'=> Yii::t('app', 'Update {modelClass}', ['modelClass' => '<?= $modelClass ?>'] ),
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
@@ -213,7 +213,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
                 ];
             }else{
                  return [
-                    'title'=> "Update <?= $modelClass ?> #".<?= $actionParams ?>,
+                    'title'=> Yii::t('app', 'Update {modelClass}', ['modelClass' => '<?= $modelClass ?>'] ),
                     'content'=>$this->renderAjax('update', [
                         'model' => $model,
                     ]),
