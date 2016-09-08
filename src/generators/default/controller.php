@@ -204,7 +204,7 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
             }else if($model->load($request->post()) && $model->save()){
                 return [
                     'forceReload'=>'#crud-datatable-pjax',
-                    'title'=> "<?= $modelClass ?> #".<?= $actionParams ?>,
+                    'title'=> Yii::t('app', '{modelClass} updated', ['modelClass' => Yii::t('app','<?= $modelClass ?>')] ),
                     'content'=>$this->renderAjax('view', [
                         'model' => $model,
                     ]),
